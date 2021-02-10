@@ -12,52 +12,58 @@
 
 <body onload="init()">
     <div class="main-container">
-            <header class="main-header">
+        <header class="main-header">
 
             <button class="menu-btn" onclick="toggleMenu()" hidden>☰</button>
             <div class="top-links main-container">
-                <div><a href="#" class="link gallery">About</a></div>
-                <div><a href="#" class="link about">Gallery</a></div>
-                <div class="logo">LOGO</div>
+                <div><a href="#" class="link-gallery">About</a></div>
+                <div><a href="#" class="link-about">Gallery</a></div>
+                <div><img class="logo" src="/icons/LOGO/LOGO.png"></div>
             </div>
-        </div>
+    </div>
     </header>
     <div class="meme-container main-container" hidden>
         <div class="canvas-container">
+            <div class="canvas-text" id="canvas-text"></div>
             <canvas onclick="draw(event)" id="canvas" height="500" width="500">
             </canvas>
         </div>
 
-        <div class="control-panel main-container">
+        <div class="control-box main-container">
             <form onsubmit="addMeme()">
-                <input class="input" data-trans="placeholder" type="text"  placeholder="Enter Your Sentence"/>
-           <button class="actions">➕</button>
-           <button class="actions">🗑️</button>
-           <button class="actions">↕️</button>
-            </form>
+                <input oninput="onTextChange(event)" class="input" data-trans="placeholder" type="text"
+                    placeholder="Enter Your Sentence" />
+                </form>
+                <button class="actions arrows"><img class="control-buttons"
+                        src="/icons/up-and-down-opposite-double-arrows-side-by-side.png" alt="" srcset=""></button>
+                <button class="actions plus"><img class="control-buttons" src="/icons/add.png"></button>
+                <button onclick="onDeleteText(event)" class="actions garbage"><img class="control-buttons" src="/icons/trash.png"></button>
+           
 
             <div class="small-panel">
-                <button class="actions"><img class="control-buttons" src="/icons/decrease font - icon.png" ></button>
-                <button class="actions"><img class="control-buttons" src="/icons/increase font - icon.png" ></button>
-                <button class="actions"><img class="control-buttons" src="/icons/align-to-left.png" ></button>
-                <button class="actions"><img class="control-buttons" src="/icons/center-text-alignment.png"></button>
-                <button class="actions"><img class="control-buttons" src="/icons/align-to-right.png"></button>
-                <button class="actions"><img class="control-buttons" src="/icons/search-icon.png"></button>
-                <button class="actions"><img class="control-buttons" src="/icons/paint-board-and-brush.png"></button>
+                <button onclick="onIncreaseText()" class="actions"><img class="control-buttons" src="/icons/increase font - icon.png"></button>
+                <button onclick="onDecreaseText()" class="actions"><img class="control-buttons" src="/icons/decrease font - icon.png"></button>
+                <button onclick="onAlignLeft()"class="actions"><img class="control-buttons" src="/icons/align-to-left.png"></button>
+                <button onclick="onCenterText()"class="actions"><img class="control-buttons" src="/icons/center-text-alignment.png"></button>
+                <button onclick="onAlignRight()"class="actions"><img class="control-buttons" src="/icons/align-to-right.png"></button>
+                <button onclick="onDecreaseFont()"class="actions"><img class="control-buttons" src="/icons/"></button>
+                <button onclick="onDecreaseFont()"class="actions"><img class="control-buttons" src="/icons/search-icon.png"></button>
+                <button onclick="onPaintText()"class="actions"><img class="control-buttons" src="/icons/paint-board-and-brush.png"></button>
             </div>
         </div>
     </div>
 
+    <!-- <div class="search-section main-container">
+        <form action="/action_page.php">
+            <input class="search-panel" type="text" placeholder="Search" name="search2">
+            <button class="actions inline" type="submit"><img class="control-buttons"
+                    src="/icons/search-icon.png"></button>
+        </form>
+    </div> -->
+
+
     <div class="grid-container main-container">
-        <div class="card"> <img src="/meme-imgs/15.jpg" onclick="galImgClicked()"></div>
-        <div class="card"> <img src="/meme-imgs/18.jpg" onclick="galImgClicked()"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
+
     </div>
 
 
