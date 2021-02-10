@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/gallery-style.css">
+    <link rel="stylesheet" href="style/memPage-style.css">
+    <title>Meme-Gen</title>
+</head>
+
+<body onload="init()">
+    <header class="main-header">
+        <div class="top-page main-container">
+
+            <!-- <button class="menu-btn" onclick="toggleMenu()" hidden>☰</button> -->
+            <div class="top-links">
+                <div><a href="#" class="nav-links"> Gallery</a></div>
+                <div><a href="#" class="nav-links">About</a></div>
+                <div class="logo">LOGO</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="canvas-container" hidden>
+        <canvas onclick="draw(event)" id="canvas" height="500" width="500" >
+            <input class="input" data-trans="placeholder" type="text"  height="25" maxlength="100" placeholder="Write"
+            name="text" />
+        <!-- <img src="/meme-imgs/12.jpg" > -->
+        </canvas>
+    </div>
+
+    <div class="grid-container">
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+    </div>
+
+
+
+    <script src="js/main-service.js"></script>
+    <script src="js/main-controller.js"></script>
+</body>
+
+</html>

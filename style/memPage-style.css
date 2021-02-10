@@ -1,0 +1,24 @@
+
+* {
+    box-sizing: border-box;
+}
+
+canvas{
+    display: block;
+    border: 1px solid black;
+    /* background-image: url(/meme-imgs/10.jpg); */
+}
+
+.top-page {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100vw;
+    height: 74px;
+    opacity: 1;
+    border: red 1px solid;
+
+}
+
+.input {
+    z-index: 2;
+}
