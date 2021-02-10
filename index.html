@@ -11,28 +11,34 @@
 </head>
 
 <body onload="init()">
-    <header class="main-header">
-        <div class="top-page main-container">
+    <div class="main-container">
+            <header class="main-header">
 
-            <!-- <button class="menu-btn" onclick="toggleMenu()" hidden>☰</button> -->
-            <div class="top-links">
-                <div><a href="#" class="nav-links"> Gallery</a></div>
-                <div><a href="#" class="nav-links">About</a></div>
+            <button class="menu-btn" onclick="toggleMenu()" hidden>☰</button>
+            <div class="top-links main-container">
+                <div><a href="#" class="link gallery">About</a></div>
+                <div><a href="#" class="link about">Gallery</a></div>
                 <div class="logo">LOGO</div>
             </div>
         </div>
     </header>
+    <div class="meme-container main-container" hidden>
+        <div class="canvas-container">
+            <canvas onclick="draw(event)" id="canvas" height="500" width="500">
+            </canvas>
+        </div>
 
-    <div class="canvas-container" hidden>
-        <canvas onclick="draw(event)" id="canvas" height="500" width="500" >
-            <input class="input" data-trans="placeholder" type="text"  height="25" maxlength="100" placeholder="Write"
-            name="text" />
-        <!-- <img src="/meme-imgs/12.jpg" > -->
-        </canvas>
+        <div class="control-panel main-container">
+            <form onsubmit="addMeme()">
+                <input class="input" data-trans="placeholder" type="text" height="80" width="120" placeholder="Enter Your Sentence"/>
+           <button>+</button>
+            </form>
+        </div>
     </div>
 
-    <div class="grid-container">
-        <div class="card"></div>
+    <div class="grid-container main-container">
+        <div class="card"> <img src="/meme-imgs/15.jpg" onclick="galImgClicked()"></div>
+        <div class="card"> <img src="/meme-imgs/18.jpg" onclick="galImgClicked()"></div>
         <div class="card"></div>
         <div class="card"></div>
         <div class="card"></div>

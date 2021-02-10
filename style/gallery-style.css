@@ -12,16 +12,12 @@ body {
     width: 100%;
     gap: 5px;
     grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
-    /* grid-template-rows: auto;
-    grid-template-columns: 1fr; */
-    
-
 
 }
 
-.card {
+.card img{
     border: 1px solid black;
     
-    width: 200px;
-    height: 175px;
+    max-width: 200px;
+    max-height: 175px;
 }

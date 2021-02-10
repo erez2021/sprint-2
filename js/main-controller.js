@@ -12,10 +12,18 @@ function renderImage() {
 
 }
 
+function galImgClicked() {
+    var hideGal = document.querySelector('.grid-container')
+    hideGal.style.display = 'none'
+    var showMemPage = document.querySelector('.meme-container')
+    showMemPage.style.display = 'block'
+    getImgById ()
+}
+
 
 function drawImg2() {
     const img = new Image()
-    img.src = 'meme-imgs/14.jpg';
+    img.src =  getImgById ()
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
     }
