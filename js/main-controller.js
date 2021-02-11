@@ -1,15 +1,20 @@
 'use strict'
 
+// importent note:  all this time i was writing on divs,
+// and the buttons and functions are related to it.
+// after I was speeking with tal at 17:00 , he told me that it can't be printed, so I need to fix it.
+// I have made some changes but it's still working on divs.
+// hope to fix it till suterday...
+
+
 var elText = document.getElementById('canvas-text')
 
 function init() {
     gElCanvas = document.getElementById('canvas')
     gCtx = gElCanvas.getContext('2d')
     renderImages()
+
 }
-
-
-
 
 function renderImages() {
     var images = gImgs
@@ -18,8 +23,6 @@ function renderImages() {
     })
     var elImages = document.querySelector('.grid-container')
     elImages.innerHTML = strHtml.join('')
-
-
 }
 
 function galImgClicked(id) {
@@ -27,66 +30,95 @@ function galImgClicked(id) {
     hideGal.style.display = 'none'
     var showMemPage = document.querySelector('.meme-container')
     showMemPage.style.display = 'block'
-    drawImg2id(id)
+    updateImage(id)
 }
 
-
-function drawImg2id(id) {
-    const img = new Image()
-    img.src = getImgById(id).url
-    img.onload = () => {
-        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    }
-}
 
 function onTextChange(event) {
-    
+    var txt = event.target.value
     elText.innerText = event.target.value;
-    elText.style.fontSize = 2 +'rem' 
-    elText.style.color= 'white' 
+    elText.style.fontSize = 2.5 + 'rem'
+    elText.style.color = 'white'
+    updateLine(txt, 'txt')
+    console.log(gMeme)
 }
 
 
-function drawText(text, x, y) {
-    gCtx.lineWidth = 2
-    gCtx.strokeStyle = 'red'
-    gCtx.fillStyle = 'white'
-    gCtx.font = '40px Arial'
-    gCtx.textAlign = 'center'
-    gCtx.fillText(text, x, y)
-    gCtx.strokeText(text, x, y)
+
+// function draw(ev) {
+//     const {
+//         offsetX,
+//         offsetY
+//     } = ev
+//     drawText('HELLO', offsetX, offsetY)
+// }
+
+
+function onIncreaseText(increaseFactor) {
+    var style = window.getComputedStyle(elText, null).getPropertyValue('font-size');
+    var currentSize = parseFloat(style);
+    elText.style.fontSize = (currentSize + increaseFactor) + 'px';
 }
 
-function draw(ev) {
-    const {
-        offsetX,
-        offsetY
-    } = ev
-    drawText('HELLO', offsetX, offsetY)
-}
 
-// var diff = '2px'
-function onIncreaseText() {
-    console.log('yes')
-    elText.style.fontSize += 2+'px'
+function onDecreaseText(decreaseFactor) {
+    var style = window.getComputedStyle(elText, null).getPropertyValue('font-size');
+    var currentSize = parseFloat(style);
+    elText.style.fontSize = (currentSize - decreaseFactor) + 'px';
 }
 
 function onAlignLeft() {
-    elText.style.marginLeft = 0+'rem'
+    var align = gMeme.lines[gMeme.selectedLineIdx].align
+    updateLine(align, 'left')
+    elText.style.marginLeft = 0 + 'rem'
 }
 
 function onAlignRight() {
-    elText.style.marginLeft = 18+'rem'
+    var align = gMeme.lines[gMeme.selectedLineIdx].align
+    updateLine(align, 'right')
+    elText.style.marginLeft = 18 + 'rem'
 }
 
 function onCenterText() {
-    elText.style.marginLeft = 10+'rem'
+    var align = gMeme.lines[gMeme.selectedLineIdx].align
+    updateLine(align, 'center')
+    console.log('align:', align)
+    elText.style.marginLeft = 10 + 'rem'
 }
 
+
 function onDeleteText() {
- var elPlaceholder = document.querySelector('.input')
- elPlaceholder.value = ''
+    var elPlaceholder = document.querySelector('.input')
+    elPlaceholder.value = ''
     var elDelete = document.querySelector('.canvas-text')
     elDelete.style.display = 'none'
-    if (elPlaceholder.value === '') elDelete.style.display = 'block' 
+
+}
+
+function onArrowClick() {
+    var elLowerText = document.querySelector('.canvas-text.lower')
+    elText = elLowerText
+}
+
+function onStrokeText() {
+    elText.style.fontWeight = 'bold'
+}
+
+function toggleMenu() {
+    document.body.classList.toggle('open-menu')
+}
+
+function onChangeColor(ev) {
+    ev.preventDefault()
+    var color = document.querySelector('[name=color]').value
+    elText.style.color = color
+
+    updateLine(color, 'color')
+}
+
+function addNewLine() {
+    var elMiddleInput = document.querySelector('.canvas-text.middle')
+    elMiddleInput.style.display = 'block'
+    var elMiddleText = document.querySelector('.canvas-text.middle')
+    elText = elMiddleText
 }
