@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/gallery-style.css">
+    <link rel="stylesheet" href="style/memPage-style.css">
+    <title>Meme-Gen</title>
+</head>
+
+<body onload="init()">
+    <div class="main-container">
+        <header class="main-header">
+
+            <div class="top-links main-container">
+                <button class="menu-btn" onclick="toggleMenu()" hidden>☰</button>
+                <div class="a-links">
+                    <div><a href="#" class="link-about">Gallery</a></div>
+                    <div><a href="#" class="link-gallery">About</a></div>
+                </div>
+                <div><img class="logo" src="icons/LOGO/LOGO.png"></div>
+            </div>
+    </div>
+    </header>
+    <div class="meme-container main-container" hidden>
+        <div class="canvas-container">
+            <!-- <div class="canvas-text upper" id="canvas-text"></div>
+            <div class="canvas-text middle" id="canvas-text" hidden></div>
+            <div class="canvas-text lower" id="canvas-text"></div> -->
+            <canvas id="canvas" height="500" width="500">
+            </canvas>
+        </div>
+
+        <div class="control-box main-container">
+            <form onsubmit="addMeme()">
+                <input oninput="onTextChange(event)" class="input" id="txtInput" data-trans="placeholder" type="text"
+                    placeholder="Enter Your Sentence" />
+            </form>
+            <button onclick="onArrowClick()" class="actions arrows"><img class="control-buttons"
+                    src="icons/up-and-down-opposite-double-arrows-side-by-side.png"></button>
+            <button onclick="addNewLine()" class="actions plus"><img class="control-buttons"
+                    src="icons/add.png"></button>
+            <button onclick="onDeleteText()" class="actions garbage"><img class="control-buttons"
+                    src="icons/trash.png"></button>
+
+
+            <div class="small-panel ">
+                <button onclick="onIncreaseText(5)" class="actions"><img class="control-buttons"
+                        src="icons/increase font - icon.png"></button>
+                <button onclick="onDecreaseText(-5)" class="actions"><img class="control-buttons"
+                        src="icons/decrease font - icon.png"></button>
+                <button onclick="onAlignLeft()" class="actions"><img class="control-buttons"
+                        src="icons/align-to-left.png"></button>
+                <button onclick="onCenterText()" class="actions"><img class="control-buttons"
+                        src="icons/center-text-alignment.png"></button>
+                <button onclick="onAlignRight()" class="actions"><img class="control-buttons"
+                        src="icons/align-to-right.png"></button>
+                <button onclick="onStrokeText()" class="actions"><img class="control-buttons"
+                        src="icons/text stroke.png"></button>
+
+                <form onsubmit="onChangeColor(event)">
+                    <label for="color">Text Color:</label>
+                    <input class="color" type="color" name="color" />
+                    <button class="actions"><img class="control-buttons" src="icons/paint-board-and-brush.png"></button>
+                </form>
+
+            </div>
+            <div>
+                <button class="lower-buttons share">Share</button>
+                <button class="lower-buttons download" onclick="download()">Download</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="search-section main-container">
+        <form action="/action_page.php">
+            <input class="search-panel" type="text" placeholder="Search" name="search2">
+            <button class="actions inline" type="submit"><img class="control-buttons"
+                    src="/icons/search-icon.png"></button>
+        </form>
+    </div> -->
+
+
+    <div class="grid-container main-container">
+
+    </div>
+
+
+    <script src="js/jquery.js"></script>
+    <script src="js/main-service.js"></script>
+    <script src="js/main-controller.js"></script>
+</body>
+
+</html>
