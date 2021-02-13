@@ -137,14 +137,19 @@ a {
     background-color: lightblue;
 }
 
+.save {
+    background-color: rgb(243, 228, 219);
+    font-size: 2.2rem;
+}
+
 .color {
-    height: 50px;
-    width: 100px;
+    height: 40px;
+    width: 80px;
 
 }
 
 label {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-family: Impact, sans-serif;
     color: rgb(65, 38, 38);
 }
@@ -180,12 +185,18 @@ label {
     }
 
     .small-panel {
-        margin: 10px;
+
+        max-width: 320px;
     }
 
     .top-links {
         height: 60px;
     }
+
+.border-bottom {
+    border-bottom: 1px solid rgb(20, 14, 14);
+    margin-bottom: 10px;
+}
 
     .a-links {
         position: fixed;
@@ -200,6 +211,7 @@ label {
         z-index: 2;
         transform: translateX(100%);
         transition: transform .4s, box-shadow .4s;
+       
     }
 
     .menu-btn {
@@ -213,4 +225,37 @@ label {
         transform: translateX(0);
         box-shadow: -3px 3px 3px 0px;
     }
+
+    .actions {
+        max-width: 45px;
+        max-height: 40px;
+        border-radius: 10px;
+        margin: 5px;
+    }
+
+    .control-buttons {
+        width: 25px;
+        height: 25px;
+    }
+
+    .input {
+        max-width: 320px
+    }
+
+    .color {
+        height: 40px;
+        width: 70px;
+    }
+
+    label {
+        font-size: 1.5rem;
+    }
+    .search-panel {
+        max-width: 400px;
+    }
+    .save {
+        font-size: 1.7rem;
+    }
+  
+
 }

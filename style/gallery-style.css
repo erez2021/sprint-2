@@ -23,6 +23,7 @@ body {
 }
 
 .search-panel {
+  font-size: 1.5rem;
   height: 60px;
   margin: 10px;
   width: 500px;
@@ -31,6 +32,27 @@ body {
 
 .inline {
   float: right;
+  margin: 0 1rem 0;
+}
+
+.key-words {
+  height: 60px;
+  
+  font-size: 2rem;
+  color: cornsilk;
+  line-height:60px;
+}
+
+.search {
+  margin-right: 2rem;
+}
+
+.baby {
+  font-size: 1.5rem;
+}
+
+.pet {
+  font-size: 1rem;
 }
 
 ::-webkit-scrollbar {
