@@ -11,7 +11,7 @@ var elText = document.getElementById('canvas-text');
 function init() {
 	gElCanvas = document.getElementById('canvas');
 	gCtx = gElCanvas.getContext('2d');
-	renderImages();
+	renderImages(gImgs);
 }
 
 function download() {
@@ -26,8 +26,8 @@ function download() {
 	document.body.removeChild(a);
 }
 
-function renderImages() {
-	var images = gImgs;
+function renderImages(images) {
+	images = gImgs;
 	var strHtml = images.map(function (image) {
 		return `<div class="card"> <img src="meme-imgs/${image.id}.jpg" onclick="galImgClicked(${image.id})"></div>`;
 	});
@@ -107,4 +107,25 @@ function addNewLine() {
 	createNewLine();
 }
 
+function shareMeme() {
+	alert ('button not active')
+}
 
+function openModal() {
+	var elModal = document.querySelector('.modal')
+	elModal.style.display = 'block'
+}
+
+function closeModal() {
+	var elModal = document.querySelector('.modal')
+	elModal.style.display = 'none'
+}
+
+function filterImgByKeyword(keyword) {
+	var img = gImgs.map((img) => {
+		if (img.keywords === keyword)
+		console.log(img)
+		return img
+	})
+	renderImages(img) // not showing the imgs , should fix it
+}
