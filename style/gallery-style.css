@@ -75,6 +75,10 @@ body {
   font-size: 1rem;
 }
 
+.hide-pics {
+display:none;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }

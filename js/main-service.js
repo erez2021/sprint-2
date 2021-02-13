@@ -11,18 +11,14 @@ var gKeywords = {
 	baby: 4,
 };
 
-
-
-
-var gImgs = [
-	{
+var gImgs = [{
 		id: 1,
-		url: '/meme-imgs/1.jpg',
+		url: 'meme-imgs/1.jpg',
 		keywords: 'funny',
 	},
 	{
 		id: 2,
-		url: '/meme-imgs/2.jpg',
+		url: 'meme-imgs/2.jpg',
 		keywords: 'pet',
 	},
 	{
@@ -98,7 +94,7 @@ var gImgs = [
 	{
 		id: 17,
 		url: '/meme-imgs/17.jpg',
-		keywords:'funny',
+		keywords: 'funny',
 	},
 	{
 		id: 18,
@@ -110,20 +106,15 @@ var gImgs = [
 var gMeme = {
 	selectedImgId: 5,
 	selectedLineIdx: 0,
-	lines: [
-		{
-			txt: 'Good Day!',
-			size: 30,
-			y: 100,
-			align: 'center',
-			color: 'red',
-			font: 'normal'
-		},
-	],
+	lines: [{
+		txt: 'Good Day!',
+		size: 30,
+		y: 100,
+		align: 'center',
+		color: 'red',
+		font: 'normal'
+	}, ],
 };
-
-
-
 
 function deleteLine() {
 	gMeme.lines.splice(gMeme.selectedLineIdx, 1);
@@ -155,7 +146,7 @@ function updateImage(id) {
 	renderCanvas(gMeme);
 }
 
-// field -> object key
+
 function updateLine(value, field) {
 	var line = gMeme.lines[gMeme.selectedLineIdx];
 	line[field] = value;
@@ -174,8 +165,8 @@ function renderCanvas(memeObject) {
 	};
 }
 
-function drawText(text, size, align, color,font, y) {
-	
+function drawText(text, size, align, color, font, y) {
+
 	gCtx.lineWidth = 2;
 	gCtx.strokeStyle = color;
 	gCtx.fillStyle = 'white';

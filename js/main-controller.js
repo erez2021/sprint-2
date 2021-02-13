@@ -6,6 +6,8 @@
 // I have made some changes but it's still working on divs.
 // hope to fix it till suterday...
 
+// 13/2 - mission completed!
+
 var elText = document.getElementById('canvas-text');
 
 function init() {
@@ -123,9 +125,15 @@ function closeModal() {
 
 function filterImgByKeyword(keyword) {
 	var img = gImgs.map((img) => {
-		if (img.keywords === keyword)
+		if (img.keywords === keyword) {
 		console.log(img)
-		return img
+		renderImages(img)
+		} 
+		else if ((keyword ==! img.keywords)) {
+			var elImg = img
+			elImg.classList.add('hide-pics')
+		}
 	})
-	renderImages(img) // not showing the imgs , should fix it
+	 // not showing the wanted imgs , should fix it
+	// return img
 }
