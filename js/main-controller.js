@@ -123,6 +123,16 @@ function closeModal() {
 	elModal.style.display = 'none'
 }
 
+function backToGallery() {
+	var showGal = document.querySelector('.grid-container');
+	showGal.style.display = 'grid';
+	var hideMemPage = document.querySelector('.meme-container');
+	hideMemPage.style.display = 'none';
+	var showSearch = document.querySelector('.search-section')
+	showSearch.style.display = 'block';
+	renderImages(gImgs)
+}
+
 function filterImgByKeyword(keyword) {
 	var img = gImgs.map((img) => {
 		if (img.keywords === keyword) {
