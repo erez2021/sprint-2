@@ -13,10 +13,11 @@ var elText = document.getElementById('canvas-text');
 function init() {
 	gElCanvas = document.getElementById('canvas');
 	gCtx = gElCanvas.getContext('2d');
+	addMouseListeners()
 	renderImages(gImgs);
 }
 
-function download() {
+function onDownload() {
 	var src = gElCanvas.toDataURL('image/png');
 	console.log('src', src);
 
@@ -29,7 +30,7 @@ function download() {
 }
 
 function renderImages(images) {
-	images = gImgs;
+	
 	var strHtml = images.map(function (image) {
 		return `<div class="card"> <img src="meme-imgs/${image.id}.jpg" onclick="galImgClicked(${image.id})"></div>`;
 	});
@@ -50,7 +51,7 @@ function galImgClicked(id) {
 function onTextChange(event) {
 	var txt = event.target.value;
 	updateLine(txt, 'txt');
-	console.log(gMeme);
+	
 }
 
 
@@ -85,6 +86,8 @@ function onDeleteText() {
 	var elPlaceholder = document.querySelector('.input');
 	elPlaceholder.value = '';
 	deleteLine();
+	
+	
 }
 
 function onArrowClick() {
@@ -105,12 +108,15 @@ function onChangeColor(ev) {
 	updateLine(color, 'color');
 }
 
-function addNewLine() {
+function onAddNewLine() {
+	var elPlaceholder = document.querySelector('.input');
+	elPlaceholder.value = '';
+	
 	createNewLine();
 }
 
 function shareMeme() {
-	alert ('button not active')
+	alert('button not active - mark zuckerberg is not paying me..')
 }
 
 function openModal() {
@@ -134,16 +140,21 @@ function backToGallery() {
 }
 
 function filterImgByKeyword(keyword) {
-	var img = gImgs.map((img) => {
-		if (img.keywords === keyword) {
-		console.log(img)
-		renderImages(img)
-		} 
-		else if ((keyword ==! img.keywords)) {
-			var elImg = img
-			elImg.classList.add('hide-pics')
-		}
+	var images = gImgs.filter((img) => {
+		return img.keywords === keyword
 	})
-	 // not showing the wanted imgs , should fix it
-	// return img
+	renderImages(images)
 }
+
+function searchImages (ev) {
+	ev.preventDefault()
+	var elKeyword = document.querySelector('[name=search2]').value	
+	var images = gImgs.filter((img) => {
+		return img.keywords === elKeyword
+	})	
+	renderImages(images)
+}
+
+
+
+

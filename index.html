@@ -11,7 +11,7 @@
 </head>
 
 <body onload="init()">
-    <div class="main-container">
+   
         <header class="main-header">
 
             <div class="top-links main-container">
@@ -24,15 +24,13 @@
                 </div>
                 <div><img class="logo" src="icons/LOGO/LOGO.png"></div>
             </div>
-    </div>
+    
     </header>
     <div class="modal main-container" hidden >The Site Was Built By Erez Hershkovitz <button class="modal-btn" onclick="closeModal()">Close</button></div>
 
     <div class="meme-container main-container" hidden>
         <div class="canvas-container">
-            <!-- <div class="canvas-text upper" id="canvas-text"></div>
-            <div class="canvas-text middle" id="canvas-text" hidden></div>
-            <div class="canvas-text lower" id="canvas-text"></div> -->
+            <div class="arrow" id="arrow">➡️</div>
             <canvas id="canvas" height="500" width="500">
             </canvas>
         </div>
@@ -44,11 +42,11 @@
             </form>
             <button onclick="onArrowClick()" class="actions arrows"><img class="control-buttons"
                     src="icons/up-and-down-opposite-double-arrows-side-by-side.png"></button>
-            <button onclick="addNewLine()" class="actions plus"><img class="control-buttons"
+            <button onclick="onAddNewLine()" class="actions plus"><img class="control-buttons"
                     src="icons/add.png"></button>
                     <button onclick="onDeleteText()" class="actions garbage"><img class="control-buttons"
                         src="icons/trash.png"></button>
-                        <button onclick="saveMemeToStorage()" class="actions save">💾</button>
+                       
 
 
             <div class="small-panel ">
@@ -66,16 +64,17 @@
                         src="icons/text stroke.png"></button>
                
 
-                <form onsubmit="onChangeColor(event)">
+                <form oninput="onChangeColor(event)">
                     <label for="color">Text Color:</label>
                     <input class="color" type="color" name="color" />
-                    <button class="actions"><img class="control-buttons" src="icons/paint-board-and-brush.png"></button>
+                    <button onclick="saveMemeToStorage(event)" class="actions save">💾</button>
+                    <!-- <button class="actions"><img class="control-buttons" src="icons/paint-board-and-brush.png"></button> -->
                 </form>
-
+              
             </div>
             <div>
                 <button class="lower-buttons share" onclick="shareMeme()">Share</button>
-                <button class="lower-buttons download" onclick="download()">Download</button>
+                <button class="lower-buttons download" onclick="onDownload()">Download</button>
             </div>
         </div>
     </div>
@@ -88,8 +87,8 @@
             <div onclick = "filterImgByKeyword('baby')" class=" baby inline">Baby</div>
             <div onclick = "filterImgByKeyword('funny')" class=" funny inline">Funny</div>
         </div>
-            <button class="actions inline search" type="submit"><img class="control-buttons"
-                    src="/icons/search-icon.png"></button>
+            <button onclick="searchImages(event)" class="actions inline search" type="submit"><img class="control-buttons"
+                    src="icons/search-icon.png"></button>
         </form>
     </div>
 

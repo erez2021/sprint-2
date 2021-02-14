@@ -3,6 +3,9 @@
 const STORAGE_KEY = 'memesDB'
 var gElCanvas;
 var gCtx;
+var gLines;
+var gStartPos;
+const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 
 
 var gKeywords = {
@@ -107,27 +110,46 @@ var gMeme = {
 	selectedImgId: 5,
 	selectedLineIdx: 0,
 	lines: [{
+		pos: {
+			x: 100,
+			y: 100
+		},
 		txt: 'Good Day!',
 		size: 30,
 		y: 100,
 		align: 'center',
 		color: 'red',
-		font: 'normal'
+		font: 'normal',
+		isDragging: false
 	}, ],
 };
 
+function getLine() {
+gLines = gMeme.lines[gMeme.selectedLineIdx]
+return gLines
+}
+
+
+
+
 function deleteLine() {
 	gMeme.lines.splice(gMeme.selectedLineIdx, 1);
-	gMeme.selectedLineIdx = 0;
+	// gMeme.selectedLineIdx = 0;
 	renderCanvas(gMeme);
 }
 
 function toggleLineIndex() {
+	var elArrow = document.getElementById('arrow')
 	if (gMeme.selectedLineIdx === 0) {
-		gMeme.selectedLineIdx = 1;
+		gMeme.selectedLineIdx = 1
+		elArrow.classList.add('arrow-down')
 	} else {
-		gMeme.selectedLineIdx = 0;
+		gMeme.selectedLineIdx = 0;	
+		elArrow.classList.remove('arrow-down')
+		elArrow.classList.add('arrow')
 	}
+	var elPlaceholder = document.querySelector('.input');
+	elPlaceholder.value = '';
 }
 
 function toggleFont() {
@@ -195,12 +217,17 @@ function drawImage(id) {
 
 function createNewLine() {
 	gMeme.lines.push({
+		pos: {
+			x: gElCanvas.width / 2,
+			y: gElCanvas.height / 2
+		},
 		txt: 'Hello!',
 		size: 30,
 		y: gMeme.lines.length >= 1 && gMeme.lines[0].y !== 400 ? 400 : 100,
 		align: 'center',
 		color: 'red',
-		font: 'normal'
+		font: 'normal',
+		isDragging: false
 	});
 	gMeme.selectedLineIdx = gMeme.lines.length - 1;
 	renderCanvas(gMeme);
@@ -212,13 +239,98 @@ function getImgById(id) {
 	return img;
 }
 
-function saveMemeToStorage() {
+function saveMemeToStorage(ev) {
+	ev.preventDefault()
 	saveToStorage(STORAGE_KEY, gMeme);
 	alert('saved to local storage')
 }
 
 function loadMemeFromStorage() {
-	alert('Loading from local storage')
+	alert('Loading from local storage - not active')
 	loadFromStorage(STORAGE_KEY)
+
+}
+
+
+function addListeners() {
+	addMouseListeners()
+	addTouchListeners()
 	renderCanvas(gMeme)
 }
+
+function addMouseListeners() {
+	gElCanvas.addEventListener('mousemove', onMove)
+
+	gElCanvas.addEventListener('mousedown', onDown)
+
+	gElCanvas.addEventListener('mouseup', onUp)
+}
+
+function addTouchListeners() {
+    gElCanvas.addEventListener('touchmove', onMove)
+
+    gElCanvas.addEventListener('touchstart', onDown)
+
+    gElCanvas.addEventListener('touchend', onUp)
+}
+
+function onDown(ev) {
+	const pos = getEvPos(ev)
+	if (!isLineClicked(pos)) return
+	console.log('yes')
+
+	getLine().isDragging = true
+	renderCanvas(gMeme)
+	gStartPos = pos
+	document.body.style.cursor = 'grabbing'
+
+}
+
+function onMove(ev) {
+	getLine()
+	if (gLines.isDragging) {
+		
+		const pos = getEvPos(ev)
+		const dx = pos.x - gStartPos.x
+		const dy = pos.y - gStartPos.y
+
+		gLines.pos.x += dx
+		gLines.pos.y += dy
+		gStartPos = pos
+		renderCanvas(gMeme)
+
+	}
+}
+
+function onUp() {
+	getLine().isDragging = false
+	// document.body.style.cursor = 'grab'
+}
+
+function getEvPos(ev) {
+    var pos = {
+        x: ev.offsetX,
+        y: ev.offsetY
+    }
+    if (gTouchEvs.includes(ev.type)) {
+        ev.preventDefault()
+        ev = ev.changedTouches[0]
+        pos = {
+            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop
+        }
+    }
+    return pos
+}
+
+function isLineClicked(clickedPos) {
+	const {
+		pos
+	} = getLine()
+	const distance = Math.sqrt((pos.x - clickedPos.x) ** 2 + (pos.y - clickedPos.y) ** 2)
+	return distance <= getLine().size
+
+}
+
+
+

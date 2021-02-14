@@ -40,6 +40,11 @@ body {
   max-width: 200px;
   max-height: 175px;
   border-radius: 10px;
+  
+}
+
+.card img:hover {
+  opacity: 0.8;
 }
 
 .search-panel {
@@ -61,10 +66,7 @@ body {
   font-size: 2rem;
   color: cornsilk;
   line-height:60px;
-}
-
-.search {
-  margin-right: 2rem;
+  margin:0 80px;
 }
 
 .baby {
@@ -77,6 +79,10 @@ body {
 
 .hide-pics {
 display:none;
+}
+
+.show-pics {
+  display: grid;
 }
 
 ::-webkit-scrollbar {
